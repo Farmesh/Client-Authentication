@@ -17,13 +17,13 @@ const Register = () => {
       countryId: "",
       stateId: "",
       cityId: "",
-      otp: "", // New field for OTP input
+      otp: "", 
    });
 
    const [countries, setCountries] = useState([]);
    const [states, setStates] = useState([]);
    const [cities, setCities] = useState([]);
-   const [otpSent, setOtpSent] = useState(false); // Track if OTP is sent
+   const [otpSent, setOtpSent] = useState(false); 
    const navigate = useNavigate();
 
    useEffect(() => {

@@ -6,6 +6,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import EditProfile from './Components/EditProfile';
 import ChangePassword from './Components/ChangePassword';
+import Profile from './Components/Profile';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path='home' element={<Home/>}/>
+      <Route path='profile' element={<Profile/>}/>
       <Route path='login' element={<Login/>}/>
       <Route path='register' element={<Register/>}/>
       <Route path='edit-profile' element={<EditProfile/>}/>

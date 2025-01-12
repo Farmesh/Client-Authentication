@@ -31,6 +31,9 @@ const Login = () => {
       // console.log(res.data.user.Name);
       localStorage.setItem("user", res.data.user.Name);
       localStorage.setItem("email", res.data.user.Email);
+      localStorage.setItem("PhoneNumber", res.data.user.PhoneNumber);
+      localStorage.setItem("Gender", res.data.user.Gender);
+      localStorage.setItem("Country", res.data.user.Country);
       Swal.fire({
         icon: 'success',
         title: 'Login successful!',

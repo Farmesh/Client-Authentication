@@ -11,7 +11,7 @@ function Navbar() {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link to="/home" className="nav-link btn btn-outline-success mx-2">Home </Link>
+                <Link to="/home" className="nav-link btn btn-outline-success">Home </Link>
 
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -31,14 +31,16 @@ function Navbar() {
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <button className="btn btn-outline-primary nav-link mx-2" onClick={logoutClick}>LogOut <i className="fas fa-sign-out-alt"></i></button>
+                                    <button className="btn btn-outline-danger nav-link mx-2" onClick={logoutClick}>LogOut <i className="fas fa-sign-out-alt"></i></button>
                                 </li>
                                 <li className="nav-item">
                                     <Link to="/edit-profile" className="nav-link btn btn-outline-success mx-2">{localStorage.user} <i className="fas fa-edit"></i></Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/change-password" className="nav-link btn btn-outline-success mx-2">Change Password</Link>
+                                    <Link to="/change-password" className="nav-link btn btn-outline-primary mx-2">Change Password</Link>
                                 </li>
+                                <Link to="/profile" className="nav-link btn btn-outline-success">Profile </Link>
+
                             </>
 
                         )}

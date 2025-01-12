@@ -13,6 +13,15 @@ function Home() {
           <p className="card-text">
             <i className="fas fa-envelope" style={{ color: '#007bff' }}></i> Email: {localStorage.email}
           </p>
+
+          <p className="card-text">
+            <i className="fas fa-venus-mars" style={{ color: '#007bff' }}></i> Gender: {localStorage.Gender}
+          </p>
+          <p className="card-text">
+            <i className="fas fa-phone" style={{ color: '#007bff' }}></i> PhoneNumber: {localStorage.PhoneNumber}
+          </p>
+         
+
           <p className="card-text">
             <i className="fas fa-key" style={{ color: '#007bff' }}></i> JWT Token: {localStorage.token}
           </p>

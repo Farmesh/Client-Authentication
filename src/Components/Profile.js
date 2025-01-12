@@ -18,19 +18,21 @@ const Profile = () => {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center">Profile</h1>
-      {user ? (
-        <div>
-          <p>Name: {user.Name}</p>
-          <p>Email: {user.Email}</p>
-          <p>Address: {user.Address}</p>
-          <p>Phone Number: {user.Phonenumber}</p>
-          <p>Gender: {user.Gender}</p>
-          <p>Subscribe to Newsletter: {user.isSubscribe ? "Yes" : "No"}</p>
+      <div className="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div className="card-body">
+          <h1 className="card-title text-center mb-4">Profile</h1>
+          {user ? (
+            <div>
+              <p className="card-text"><strong>Name:</strong> {user.Name}</p>
+              <p className="card-text"><strong>Email:</strong> {user.Email}</p>
+              <p className="card-text"><strong>Address:</strong> {user.Address}</p>
+              <p className="card-text"><strong>Phone Number:</strong> {user.Phonenumber}</p>
+              <p className="card-text"><strong>Gender:</strong> {user.Gender}</p>
+              <p className="card-text"><strong>Subscribe to Newsletter:</strong> {user.isSubscribe ? "Yes" : "No"}</p>
+            </div>
+          ):""}
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      </div>
     </div>
   );
 };

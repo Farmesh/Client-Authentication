@@ -12,7 +12,6 @@ const EditProfile = () => {
   });
   const navigate = useNavigate();
 
-  // Load the user data when the component mounts
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -38,7 +37,6 @@ const EditProfile = () => {
     fetchUserData();
   }, []);
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -82,7 +80,6 @@ const EditProfile = () => {
     <div className="container mt-5">
       <h1 className="text-center">Edit Profile</h1>
       <form onSubmit={handleSubmit}>
-        {/* Name */}
         <div className="mb-3">
           <input
             type="text"
@@ -95,7 +92,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Address */}
         <div className="mb-3">
           <input
             type="text"
@@ -108,7 +104,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Phone Number */}
         <div className="mb-3">
           <input
             type="text"
@@ -121,7 +116,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Gender */}
         <div className="mb-3">
           <select
             name="gender"
@@ -137,7 +131,6 @@ const EditProfile = () => {
           </select>
         </div>
 
-        {/* Subscribe to Newsletter */}
         <div className="mb-3">
           <label>
             <input
@@ -150,7 +143,6 @@ const EditProfile = () => {
           </label>
         </div>
 
-        {/* Submit Button */}
         <div className="mb-3">
           <button type="submit" className="btn btn-primary">
             Save Changes
