@@ -73,7 +73,7 @@ const ChangePassword = () => {
                />
             </div>
             <div className="mb-3">
-            <label>Old Password</label>
+            <label>New Password</label>
 
                <input
                   type="password"
@@ -86,7 +86,7 @@ const ChangePassword = () => {
                />
             </div>
             <div className="mb-3">
-            <label>Old Password</label>
+            <label>Confirm Password</label>
 
                <input
                   type="password"

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
    const [formData, setFormData] = useState({
@@ -17,11 +17,13 @@ const Register = () => {
       countryId: "",
       stateId: "",
       cityId: "",
+      otp: "", // New field for OTP input
    });
 
    const [countries, setCountries] = useState([]);
    const [states, setStates] = useState([]);
    const [cities, setCities] = useState([]);
+   const [otpSent, setOtpSent] = useState(false); // Track if OTP is sent
    const navigate = useNavigate();
 
    useEffect(() => {
@@ -56,12 +58,36 @@ const Register = () => {
          [name]: type === "checkbox" ? checked : value,
       }));
    };
+
+   const sendOtp = async () => {
+      try {
+         const res = await axios.post("http://localhost:8080/send-otp", {
+            Phonenumber: formData.Phonenumber,
+         });
+         if (res && res.data && res.data.message) {
+            Swal.fire({
+               icon: 'success',
+               title: 'OTP Sent',
+               text: res.data.message,
+            });
+            toast.success(res.data.message);
+            setOtpSent(true); 
+         }
+      } catch (err) {
+         const errorMessage = "Failed to send OTP!";
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: errorMessage,
+         });
+         toast.error(errorMessage);
+      }
+   };
+
    const handleSubmit = async (e) => {
       e.preventDefault();
       try {
          const res = await axios.post("http://localhost:8080/register", formData);
-         
-         // Check if response contains message
          if (res && res.data && res.data.message) {
             Swal.fire({
                icon: 'success',
@@ -70,37 +96,23 @@ const Register = () => {
             });
             toast.success(res.data.message);
             navigate("/login");
-         } else {
-            // If no message in the response, show a fallback success message
-            Swal.fire({
-               icon: 'success',
-               title: 'Registration Successful',
-               text: 'You have been registered successfully!',
-            });
-            toast.success('You have been registered successfully!');
-            navigate("/login");
          }
-   
       } catch (err) {
-         // If there is an error, show a detailed error message if available
-         const errorMessage = err.response?.data?.message || 'Something went wrong!';
-         console.error('Registration error:', err); // Log the error for debugging
-   
+         const errorMessage = "Something went wrong!";
          Swal.fire({
             icon: 'error',
             title: 'Registration Failed',
             text: errorMessage,
          });
-   
          toast.error(errorMessage);
       }
    };
-   
+
    return (
       <div className="container mt-5">
          <h1 className="text-center">Register</h1>
          <form onSubmit={handleSubmit}>
-            {/* User Information */}
+      
             <div className="mb-3">
                <input
                   type="text"
@@ -111,7 +123,6 @@ const Register = () => {
                   className="form-control"
                />
             </div>
-
             <div className="mb-3">
                <input
                   type="text"
@@ -122,7 +133,6 @@ const Register = () => {
                   className="form-control"
                />
             </div>
-
             <div className="mb-3">
                <input
                   type="text"
@@ -132,7 +142,29 @@ const Register = () => {
                   onChange={handleChange}
                   className="form-control"
                />
+               {!otpSent && (
+                  <button
+                     type="button"
+                     className="btn btn-secondary mt-2"
+                     onClick={sendOtp}
+                  >
+                     Send OTP
+                  </button>
+               )}
             </div>
+
+            {otpSent && (
+               <div className="mb-3">
+                  <input
+                     type="text"
+                     name="otp"
+                     placeholder="Enter OTP"
+                     value={formData.otp}
+                     onChange={handleChange}
+                     className="form-control"
+                  />
+               </div>
+            )}
 
             <div className="mb-3">
                <input
@@ -144,7 +176,6 @@ const Register = () => {
                   className="form-control"
                />
             </div>
-
             <div className="mb-3">
                <input
                   type="password"
@@ -155,7 +186,6 @@ const Register = () => {
                   className="form-control"
                />
             </div>
-
             <div className="mb-3">
                <label>Gender</label>
                <div>
@@ -167,9 +197,7 @@ const Register = () => {
                      onChange={handleChange}
                      className="form-check-input"
                   />
-                  <label className="form-check-label" htmlFor="male">
-                     Male
-                  </label>
+                  <label>Male</label>
                </div>
                <div>
                   <input
@@ -180,9 +208,7 @@ const Register = () => {
                      onChange={handleChange}
                      className="form-check-input"
                   />
-                  <label className="form-check-label" htmlFor="female">
-                     Female
-                  </label>
+                  <label>Female</label>
                </div>
                <div>
                   <input
@@ -193,12 +219,9 @@ const Register = () => {
                      onChange={handleChange}
                      className="form-check-input"
                   />
-                  <label className="form-check-label" htmlFor="other">
-                     Other
-                  </label>
+                  <label>Other</label>
                </div>
             </div>
-
             <div className="mb-3">
                <label>
                   <input
@@ -210,8 +233,6 @@ const Register = () => {
                   Subscribe to newsletter
                </label>
             </div>
-
-
             <div className="mb-3">
                <select
                   name="countryId"
@@ -227,7 +248,6 @@ const Register = () => {
                   ))}
                </select>
             </div>
-
             <div className="mb-3">
                <select
                   name="stateId"
@@ -243,7 +263,6 @@ const Register = () => {
                   ))}
                </select>
             </div>
-
             <div className="mb-3">
                <select
                   name="cityId"
@@ -259,14 +278,13 @@ const Register = () => {
                   ))}
                </select>
             </div>
-
             <div className="mb-3">
                <button type="submit" className="btn btn-primary">
                   Register
                </button>
             </div>
          </form>
-         <ToastContainer/>
+         <ToastContainer />
       </div>
    );
 };
