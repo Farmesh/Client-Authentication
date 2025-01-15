@@ -1,6 +1,5 @@
 
 function Home() {
-  //added comment 
   return (
     <div style={{ backgroundColor: '#f0f8ff', padding: '20px', borderRadius: '10px' }}>
       <h1 className="text-center m-4 text-primary"> Hello {localStorage.user}</h1>
