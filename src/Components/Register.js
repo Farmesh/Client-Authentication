@@ -28,7 +28,7 @@ const Register = () => {
 
    useEffect(() => {
       axios
-         .get("http://localhost:8080/countries")
+         .get("https://server-authentication-1.onrender.com/countries")
          .then((res) => setCountries(res.data))
          .catch((err) => console.log("Error fetching countries:", err));
    }, []);
@@ -36,7 +36,7 @@ const Register = () => {
    useEffect(() => {
       if (formData.countryId) {
          axios
-            .get(`http://localhost:8080/states/${formData.countryId}`)
+            .get(`https://server-authentication-1.onrender.com/states/${formData.countryId}`)
             .then((res) => setStates(res.data))
             .catch((err) => console.log("Error fetching states:", err));
       }
@@ -45,7 +45,7 @@ const Register = () => {
    useEffect(() => {
       if (formData.stateId) {
          axios
-            .get(`http://localhost:8080/cities/${formData.stateId}`)
+            .get(`https://server-authentication-1.onrender.com/cities/${formData.stateId}`)
             .then((res) => setCities(res.data))
             .catch((err) => console.log("Error fetching cities:", err));
       }
@@ -61,7 +61,7 @@ const Register = () => {
 
    const sendOtp = async () => {
       try {
-         const res = await axios.post("http://localhost:8080/send-otp", {
+         const res = await axios.post("https://server-authentication-1.onrender.com/send-otp", {
             Phonenumber: formData.Phonenumber,
          });
          if (res && res.data && res.data.message) {
@@ -87,7 +87,7 @@ const Register = () => {
    const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-         const res = await axios.post("http://localhost:8080/register", formData);
+         const res = await axios.post("https://server-authentication-1.onrender.com/register", formData);
          if (res && res.data && res.data.message) {
             Swal.fire({
                icon: 'success',

@@ -16,7 +16,7 @@ const EditProfile = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:8080/profile", {
+        const res = await axios.get("https://server-authentication-1.onrender.com/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -51,7 +51,7 @@ const EditProfile = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        "http://localhost:8080/Profile",
+        "https://server-authentication-1.onrender.com/Profile",
         formData,
         {
           headers: {

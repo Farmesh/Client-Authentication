@@ -31,7 +31,7 @@ const ChangePassword = () => {
       try {
          const token = localStorage.getItem("token");
          const res = await axios.put(
-            "http://localhost:8080/change-password",
+            "https://server-authentication-1.onrender.com/change-password",
             {
                oldPassword: formData.oldPassword,
                newPassword: formData.newPassword,

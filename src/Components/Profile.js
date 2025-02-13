@@ -8,7 +8,7 @@ const Profile = () => {
   useEffect(() => {
     if (token) {
       axios
-        .get("http://localhost:8080/profile", {
+        .get("https://server-authentication-1.onrender.com/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => setUser(res.data))

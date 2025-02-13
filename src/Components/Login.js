@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8080/login", formData);
+      const res = await axios.post("https://server-authentication-1.onrender.com/login", formData);
       console.log(res.data);  
 
       localStorage.setItem("token", res.data.token);
